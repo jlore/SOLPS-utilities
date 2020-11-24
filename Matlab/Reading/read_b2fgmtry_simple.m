@@ -53,7 +53,8 @@ while ~feof(fid)
         end
         
         % Check if this is a (nx+2,ny+2,dim3) sized array
-        if mod(varSize,numCells) ==0
+        % Skip if varSize is zero
+        if mod(varSize,numCells) == 0 && varSize ~=0
             this = reshape(this,[Geo.nx+2,Geo.ny+2,varSize/numCells]);
         end
         Geo.(varName) = this;
